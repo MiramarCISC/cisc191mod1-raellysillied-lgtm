@@ -17,7 +17,7 @@ public class IntArrayToolkit {
      * @throws IllegalArgumentException if a is null
      */
     public static int sum(int[] a) {
-        if (a == null || a.length == 0) {
+        if (a == null) {
             throw new IllegalArgumentException();
         }
         int sum = 0;
@@ -35,7 +35,7 @@ public class IntArrayToolkit {
         if (a == null || a.length == 0) {
             throw new IllegalArgumentException();
         }
-        int max = 0;
+        int max = a[0];
         for (int val : a){
             if  (val > max){
                 max = val;
@@ -49,7 +49,7 @@ public class IntArrayToolkit {
      * @throws IllegalArgumentException if a is null
      */
     public static int indexOf(int[] a, int target) {
-        if (a == null || a.length == 0) {
+        if (a == null) {
             throw new IllegalArgumentException();
         }
         for (int i = 0; i < a.length; i++){

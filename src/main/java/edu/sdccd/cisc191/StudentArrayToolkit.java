@@ -56,15 +56,18 @@ public class StudentArrayToolkit {
      * @throws IllegalArgumentException if n < 0
      */
     public static Student[] topNByGpa(Student[] students, int n) {
-        Student[] topNth = new Student[n];
         if (n < 0) {
             throw new IllegalArgumentException();
         }
-        if (n == 0) {
+        if (n > students.length) {
+            Student[] topNth = new Student[students.length]; // null array
+            System.arraycopy(copySortedByGpaDesc(students), 0, topNth, 0, students.length);
             return topNth;
         }
-        if (n > students.length) {
-            System.arraycopy(copySortedByGpaDesc(students), 0, topNth, 0, students.length);
+
+        Student[] topNth = new Student[n];
+        if (n == 0) {
+            return topNth;
         } else {
             System.arraycopy(copySortedByGpaDesc(students), 0, topNth, 0, n);
         }

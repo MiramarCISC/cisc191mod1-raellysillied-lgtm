@@ -19,7 +19,7 @@ public class Student {
      * @throws IllegalArgumentException if any argument is invalid
      */
     public Student(String name, double gpa, int id) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException();
         }
         this.name = name;
@@ -27,7 +27,7 @@ public class Student {
             throw new IllegalArgumentException();
         }
         this.gpa = gpa;
-        if (id < 0) {
+        if (id <= 0) {
             throw new IllegalArgumentException();
         }
         this.id = id;
@@ -48,7 +48,7 @@ public class Student {
     }
 
     public int getId() {
-        if (this.id < 0) {
+        if (this.id <= 0) {
             throw new IllegalArgumentException();
         }
         return this.id;

@@ -71,9 +71,7 @@ public class IntArrayToolkit {
             throw new IllegalArgumentException();
         }
         int[] result = new int[a.length];
-        for (int i = 0; i < a.length; i++){
-            result[i] = a[i];
-        }
+        System.arraycopy(a, 0, result, 0, a.length);
         Arrays.sort(result);
         return result;
     }

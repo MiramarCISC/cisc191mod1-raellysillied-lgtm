@@ -23,7 +23,7 @@ public class Student {
             throw new IllegalArgumentException();
         }
         this.name = name;
-        if  (gpa <= 0.0 || gpa >= 4.0) {
+        if (gpa < 0.0 || gpa > 4.0) {
             throw new IllegalArgumentException();
         }
         this.gpa = gpa;
@@ -41,14 +41,14 @@ public class Student {
     }
 
     public double getGpa() {
-        if  (this.gpa <= 0.0 || this.gpa >= 4.0) {
+        if (this.gpa < 0.0 || this.gpa > 4.0) {
             throw new IllegalArgumentException();
         }
         return this.gpa;
     }
 
     public int getId() {
-        if  (this.id < 0) {
+        if (this.id < 0) {
             throw new IllegalArgumentException();
         }
         return this.id;

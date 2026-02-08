@@ -11,6 +11,18 @@ public class Main {
         // - sorted-by-GPA order
         // - topNByGpa with N=3
         // - findByIdLinear with existing and non-existing id
-        System.out.println("Module 1 Demo (implement me!)");
+        Student[] students = {
+        new Student("Josh",3.7, 3 ),
+        new Student("Lain",4, 73 ),
+        new Student("Alan",2.5, 28 ),
+        new Student("Berdly",3.9, 12 ),
+        new Student("Jose",3, 93 ),
+        new Student("Mica",3, 67 ),
+        };
+        System.out.println("Original order:");
+        for (Student student : students) {
+            System.out.print(student.getName() + ": " + student.getGpa() + " | ");
+        }
+        System.out.println("Sorted by GPA");
     }
 }

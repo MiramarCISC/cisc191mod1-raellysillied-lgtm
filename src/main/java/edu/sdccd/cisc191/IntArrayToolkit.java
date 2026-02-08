@@ -75,5 +75,6 @@ public class IntArrayToolkit {
             result[i] = a[i];
         }
         Arrays.sort(result);
+        return result;
     }
 }

@@ -22,7 +22,18 @@ public class StudentArrayToolkit {
      */
     public static Student[] copySortedByGpaDesc(Student[] students) {
         // TODO: defensive copy + Arrays.sort with Comparator lambda
-        throw new UnsupportedOperationException("Not implemented yet");
+        Student[] gpaStudents = new Student[students.length];
+        System.arraycopy(students, 0, gpaStudents, 0, students.length);
+
+        Comparator<Student> gpaComparator = (Student s1, Student s2) -> {
+            int gpaCompared = Double.compare(s2.getGpa(), s1.getGpa());
+            if (gpaCompared != 0) {
+                return gpaCompared;
+            }
+            return s1.getName().compareTo(s2.getName());
+        };
+        Arrays.sort(gpaStudents, gpaComparator);
+        return gpaStudents;
     }
 
     /**
@@ -30,8 +41,12 @@ public class StudentArrayToolkit {
      * Returns the Student if found, otherwise null.
      */
     public static Student findByIdLinear(Student[] students, int id) {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        for (Student student : students) {
+            if (student.getId() == id) {
+                return student;
+            }
+        }
+        return null;
     }
 
     /**
@@ -41,7 +56,21 @@ public class StudentArrayToolkit {
      * @throws IllegalArgumentException if n < 0
      */
     public static Student[] topNByGpa(Student[] students, int n) {
-        // TODO: validate n, sort copy, return first n in a new array
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (n > students.length) {
+            Student[] topNth = new Student[students.length]; // null array
+            System.arraycopy(copySortedByGpaDesc(students), 0, topNth, 0, students.length);
+            return topNth;
+        }
+
+        Student[] topNth = new Student[n];
+        if (n == 0) {
+            return topNth;
+        } else {
+            System.arraycopy(copySortedByGpaDesc(students), 0, topNth, 0, n);
+        }
+        return topNth;
     }
 }

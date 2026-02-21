@@ -25,13 +25,11 @@ public class StudentArrayToolkit {
         Student[] gpaStudents = new Student[students.length];
         System.arraycopy(students, 0, gpaStudents, 0, students.length);
 
-        Comparator<Student> gpaComparator = (Student s1, Student s2) -> {
-            int gpaCompared = Double.compare(s2.getGpa(), s1.getGpa());
-            if (gpaCompared != 0) {
-                return gpaCompared;
-            }
-            return s1.getName().compareTo(s2.getName());
-        };
+        // More idiomatic use of Java's Comparator API - readable and compact.
+        Comparator<Student> gpaComparator = Comparator
+            .comparingDouble(Student::getGpa).reversed() // Compare GPA descending
+            .thenComparing(Student::getName); // Compare name ascending (tie-breaker)
+
         Arrays.sort(gpaStudents, gpaComparator);
         return gpaStudents;
     }
@@ -57,20 +55,15 @@ public class StudentArrayToolkit {
      */
     public static Student[] topNByGpa(Student[] students, int n) {
         if (n < 0) {
-            throw new IllegalArgumentException();
-        }
-        if (n > students.length) {
-            Student[] topNth = new Student[students.length]; // null array
-            System.arraycopy(copySortedByGpaDesc(students), 0, topNth, 0, students.length);
-            return topNth;
+            // Always add a message to exceptions
+            throw new IllegalArgumentException("Cannot retrieve negative number of Students");
         }
 
-        Student[] topNth = new Student[n];
-        if (n == 0) {
-            return topNth;
-        } else {
-            System.arraycopy(copySortedByGpaDesc(students), 0, topNth, 0, n);
-        }
-        return topNth;
+        // Total number of students or N, whichever is smaller.
+        // More efficient code-wise, avoids repetition.
+        int numStudents = Math.min(n, students.length);
+
+        // Java's Arrays API is more well-utilized.
+        return Arrays.copyOf(copySortedByGpaDesc(students), numStudents);
     }
 }

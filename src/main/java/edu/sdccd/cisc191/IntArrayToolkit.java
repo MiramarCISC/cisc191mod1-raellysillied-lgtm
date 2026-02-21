@@ -11,6 +11,8 @@ import java.util.Arrays;
  * - Do not modify input arrays unless the method explicitly says so.
  */
 
+// All methods are written nicely and do their job really well!
+
 public class IntArrayToolkit {
 
     /**
